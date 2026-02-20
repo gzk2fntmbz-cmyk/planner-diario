@@ -6,43 +6,33 @@
 <title>Planner Diário</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#0f172a">
-  <style><head>
-  <meta charset="UTF-8">
-  <title>Planner Diário</title>
-</head>
 </head>
 <body style="font-family:Arial;background:#0f172a;color:white;padding:15px;">
 <h1>📅 Planner Diário</h1>
 
-<form action="/adicionar" method="post">
-  <input name="texto" placeholder="Nova tarefa" required>
-  <input name="hora" type="time">
-  
-  <select name="prioridade">
-    <option>Alta</option>
-    <option>Média</option>
-    <option>Baixa</option>
-  </select>
-
-  <button type="submit">Adicionar</button>
+<form method="POST" action="/adicionar">
+<input name="titulo" placeholder="Nova tarefa" required>
+<input type="time" name="horario" required>
+<select name="prioridade">
+<option value="alta">🔥 Alta</option>
+<option value="media">⚡ Média</option>
+<option value="baixa">🌱 Baixa</option>
+</select>
+<button type="submit">Adicionar</button>
 </form>
 
 <h2>📋 Tarefas</h2>
 
-<ul id="lista-tarefas"></ul>
-
-<div style="margin-top:15px;">
-  <input id="nova-tarefa" placeholder="Nova tarefa..." />
-  
-  <select id="prioridade">
-    <option value="Alta">Alta</option>
-    <option value="Média">Média</option>
-    <option value="Baixa">Baixa</option>
-  </select>
-  
-  <button onclick="adicionarTarefa()">Adicionar</button>
+{% for t in tarefas %}
+<div>
+<b>{{ t.horario }}</b> — {{ t.titulo }}<br>
+Prioridade: {{ t.prioridade }}
+{% if not t.concluida %}
+<br><a href="/concluir/{{ loop.index0 }}">✔ Concluir</a>
+{% endif %}
 </div>
-  
+{% endfor %}
+
 <script>
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("/static/sw.js");
