@@ -9,31 +9,7 @@
   <style><head>
   <meta charset="UTF-8">
   <title>Planner Diário</title>
-
-  <style>
-    /* 🔥 COLE O CSS AQUI */
-
-    .concluida {
-      text-decoration: line-through;
-      opacity: 0.6;
-    }
-
-    .tarefa-item {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      margin: 8px 0;
-    }
-
-    .remover {
-      background: #ff4d4d;
-      border: none;
-      color: white;
-      padding: 4px 8px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-</head></style>
+</head>
 </head>
 <body style="font-family:Arial;background:#0f172a;color:white;padding:15px;">
 <h1>📅 Planner Diário</h1>
@@ -53,23 +29,19 @@
 
 <h2>📋 Tarefas</h2>
 
-<ul>
-{% for tarefa in tarefas %}
-  <li class="tarefa-item">
-    <a href="/toggle/{{ tarefa.id }}">
-      {% if tarefa.concluida %}
-        <span class="concluida">
-          {{ tarefa.horario }} - {{ tarefa.titulo }} ({{ tarefa.prioridade }})
-        </span>
-      {% else %}
-        {{ tarefa.horario }} - {{ tarefa.titulo }} ({{ tarefa.prioridade }})
-      {% endif %}
-    </a>
+<ul id="lista-tarefas"></ul>
 
-    <a class="remover" href="/remover/{{ tarefa.id }}">❌</a>
-  </li>
-{% endfor %}
-</ul>
+<div style="margin-top:15px;">
+  <input id="nova-tarefa" placeholder="Nova tarefa..." />
+  
+  <select id="prioridade">
+    <option value="Alta">Alta</option>
+    <option value="Média">Média</option>
+    <option value="Baixa">Baixa</option>
+  </select>
+  
+  <button onclick="adicionarTarefa()">Adicionar</button>
+</div>
   
 <script>
 if ("serviceWorker" in navigator) {
