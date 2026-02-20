@@ -1,26 +1,26 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect
 import json
 import os
+import uuid
 
 app = Flask(__name__)
-
 ARQUIVO = "tarefas.json"
 
 
-# ---------- helpers ----------
+# ----------------- helpers -----------------
 def carregar_tarefas():
-    if not os.path.exists(ARQUIVO):
-        return []
-    with open(ARQUIVO, "r", encoding="utf-8") as f:
-        return json.load(f)
+    if os.path.exists(ARQUIVO):
+        with open(ARQUIVO, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return []
 
 
 def salvar_tarefas(tarefas):
     with open(ARQUIVO, "w", encoding="utf-8") as f:
-        json.dump(tarefas, f, indent=2, ensure_ascii=False)
+        json.dump(tarefas, f, indent=4, ensure_ascii=False)
 
 
-# ---------- rotas ----------
+# ----------------- rotas -----------------
 @app.route("/")
 def index():
     tarefas = carregar_tarefas()
@@ -31,42 +31,40 @@ def index():
 def adicionar():
     tarefas = carregar_tarefas()
 
-    texto = request.form.get("texto")
-    prioridade = request.form.get("prioridade")
-    hora = request.form.get("hora")
+    nova = {
+        "id": str(uuid.uuid4()),  # 🔥 ID único por tarefa
+        "titulo": request.form["titulo"],
+        "horario": request.form["horario"],
+        "prioridade": request.form["prioridade"],
+        "concluida": False
+    }
 
-    tarefas.append({
-        "texto": texto,
-        "prioridade": prioridade,
-        "hora": hora,
-        "feita": False
-    })
-
+    tarefas.append(nova)
     salvar_tarefas(tarefas)
-    return redirect(url_for("index"))
+    return redirect("/")
 
 
-@app.route("/toggle/<int:idx>")
-def toggle(idx):
+@app.route("/toggle/<id>")
+def toggle(id):
     tarefas = carregar_tarefas()
 
-    if 0 <= idx < len(tarefas):
-        tarefas[idx]["feita"] = not tarefas[idx]["feita"]
+    for tarefa in tarefas:
+        if tarefa["id"] == id:
+            tarefa["concluida"] = not tarefa["concluida"]
+            break
 
     salvar_tarefas(tarefas)
-    return redirect(url_for("index"))
+    return redirect("/")
 
 
-@app.route("/remover/<int:idx>")
-def remover(idx):
+@app.route("/remover/<id>")
+def remover(id):
     tarefas = carregar_tarefas()
-
-    if 0 <= idx < len(tarefas):
-        tarefas.pop(idx)
-
+    tarefas = [t for t in tarefas if t["id"] != id]
     salvar_tarefas(tarefas)
-    return redirect(url_for("index"))
+    return redirect("/")
 
 
+# ----------------- run -----------------
 if __name__ == "__main__":
     app.run(debug=True)
