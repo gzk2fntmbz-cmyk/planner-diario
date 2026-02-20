@@ -89,15 +89,8 @@
 <ul>
 {% for tarefa in tarefas %}
   <li>
-    <a href="/toggle/{{ loop.index0 }}">
-      {% if tarefa.feita %}
-        <s>{{ tarefa.hora }} - {{ tarefa.texto }} ({{ tarefa.prioridade }})</s>
-      {% else %}
-        {{ tarefa.hora }} - {{ tarefa.texto }} ({{ tarefa.prioridade }})
-      {% endif %}
-    </a>
-
-    <a href="/remover/{{ loop.index0 }}">❌</a>
+   <a href="/toggle/{{ tarefa.id }}">
+<a href="/remover/{{ tarefa.id }}">
   </li>
 {% endfor %}
 </ul>
