@@ -23,15 +23,19 @@
 
 <h2>📋 Tarefas</h2>
 
-{% for t in tarefas %}
-<div>
-<b>{{ t.horario }}</b> — {{ t.titulo }}<br>
-Prioridade: {{ t.prioridade }}
-{% if not t.concluida %}
-<br><a href="/concluir/{{ loop.index0 }}">✔ Concluir</a>
-{% endif %}
+<ul id="lista-tarefas"></ul>
+
+<div style="margin-top:15px;">
+  <input id="nova-tarefa" placeholder="Nova tarefa..." />
+  
+  <select id="prioridade">
+    <option value="Alta">Alta</option>
+    <option value="Média">Média</option>
+    <option value="Baixa">Baixa</option>
+  </select>
+  
+  <button onclick="adicionarTarefa()">Adicionar</button>
 </div>
-{% endfor %}
 
 <script>
 if ("serviceWorker" in navigator) {
