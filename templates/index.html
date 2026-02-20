@@ -12,100 +12,60 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #0f172a;
-    color: white;
-    padding: 15px;
-    margin: 0;
-}
+   body {
+            font-family: Arial;
+            background: #0f172a;
+            color: white;
+            padding: 30px;
+        }
 
-h1 {
-    text-align: center;
-    font-size: clamp(22px, 5vw, 32px);
-}
+        h1 {
+            text-align: center;
+        }
 
-/* FORM */
-form {
-    background: #1e293b;
-    padding: 15px;
-    border-radius: 14px;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
+        form {
+            background: #1e293b;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
 
-input, select, button {
-    padding: 12px;
-    border-radius: 10px;
-    border: none;
-    font-size: 16px;
-    width: 100%;
-}
+        input, select, button {
+            padding: 8px;
+            margin: 5px;
+            border-radius: 6px;
+            border: none;
+        }
 
-/* BOTÃO */
-button {
-    background: #22c55e;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
-}
+        button {
+            background: #22c55e;
+            color: white;
+            cursor: pointer;
+        }
 
-button:active {
-    transform: scale(0.97);
-}
+        .tarefa {
+            background: #1e293b;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+        }
 
-/* TAREFAS */
-.tarefa {
-    background: #1e293b;
-    padding: 14px;
-    margin: 10px 0;
-    border-radius: 12px;
-    font-size: clamp(14px, 4vw, 18px);
-}
+        .alta { border-left: 6px solid #ef4444; }
+        .media { border-left: 6px solid #f59e0b; }
+        .baixa { border-left: 6px solid #22c55e; }
 
-/* PRIORIDADES */
-.alta { border-left: 6px solid #ef4444; }
-.media { border-left: 6px solid #f59e0b; }
-.baixa { border-left: 6px solid #22c55e; }
+        .concluida {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
 
-.concluida {
-    text-decoration: line-through;
-    opacity: 0.6;
-}
+        a {
+            color: #38bdf8;
+        }
+    </style>
+</head>
+<body>
 
-/* LINK */
-a {
-    color: #38bdf8;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-/* DESKTOP AJUSTE */
-@media (min-width: 768px) {
-    body {
-        max-width: 700px;
-        margin: auto;
-    }
-
-    form {
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: center;
-    }
-
-    form input,
-    form select {
-        flex: 1;
-        min-width: 120px;
-    }
-
-    form button {
-        width: auto;
-        padding: 12px 20px;
-    }
 }
 </style>
 <body style="font-family:Arial;background:#0f172a;color:white;padding:15px;">
