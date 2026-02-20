@@ -7,6 +7,107 @@
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#0f172a">
 </head>
+  <style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0f172a;
+    color: white;
+    padding: 15px;
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    font-size: clamp(22px, 5vw, 32px);
+}
+
+/* FORM */
+form {
+    background: #1e293b;
+    padding: 15px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input, select, button {
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+    width: 100%;
+}
+
+/* BOTÃO */
+button {
+    background: #22c55e;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+/* TAREFAS */
+.tarefa {
+    background: #1e293b;
+    padding: 14px;
+    margin: 10px 0;
+    border-radius: 12px;
+    font-size: clamp(14px, 4vw, 18px);
+}
+
+/* PRIORIDADES */
+.alta { border-left: 6px solid #ef4444; }
+.media { border-left: 6px solid #f59e0b; }
+.baixa { border-left: 6px solid #22c55e; }
+
+.concluida {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+/* LINK */
+a {
+    color: #38bdf8;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* DESKTOP AJUSTE */
+@media (min-width: 768px) {
+    body {
+        max-width: 700px;
+        margin: auto;
+    }
+
+    form {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    form input,
+    form select {
+        flex: 1;
+        min-width: 120px;
+    }
+
+    form button {
+        width: auto;
+        padding: 12px 20px;
+    }
+}
+</style>
 <body style="font-family:Arial;background:#0f172a;color:white;padding:15px;">
 <h1>📅 Planner Diário</h1>
 
