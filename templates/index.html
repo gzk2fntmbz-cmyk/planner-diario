@@ -23,21 +23,19 @@
 
 <h2>📋 Tarefas</h2>
 
-<ul>
-{% for tarefa in tarefas %}
-  <li>
-    <a href="/toggle/{{ loop.index0 }}">
-      {% if tarefa.feita %}
-        <s>{{ tarefa.hora }} - {{ tarefa.texto }} ({{ tarefa.prioridade }})</s>
-      {% else %}
-        {{ tarefa.hora }} - {{ tarefa.texto }} ({{ tarefa.prioridade }})
-      {% endif %}
-    </a>
+<ul id="lista-tarefas"></ul>
 
-    <a href="/remover/{{ loop.index0 }}">❌</a>
-  </li>
-{% endfor %}
-</ul>
+<div style="margin-top:15px;">
+  <input id="nova-tarefa" placeholder="Nova tarefa..." />
+  
+  <select id="prioridade">
+    <option value="Alta">Alta</option>
+    <option value="Média">Média</option>
+    <option value="Baixa">Baixa</option>
+  </select>
+  
+  <button onclick="adicionarTarefa()">Adicionar</button>
+</div>
 
 <script>
 if ("serviceWorker" in navigator) {
