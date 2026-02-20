@@ -10,15 +10,17 @@
 <body style="font-family:Arial;background:#0f172a;color:white;padding:15px;">
 <h1>📅 Planner Diário</h1>
 
-<form method="POST" action="/adicionar">
-<input name="titulo" placeholder="Nova tarefa" required>
-<input type="time" name="horario" required>
-<select name="prioridade">
-<option value="alta">🔥 Alta</option>
-<option value="media">⚡ Média</option>
-<option value="baixa">🌱 Baixa</option>
-</select>
-<button type="submit">Adicionar</button>
+<form action="/adicionar" method="post">
+  <input name="texto" placeholder="Nova tarefa" required>
+  <input name="hora" type="time">
+  
+  <select name="prioridade">
+    <option>Alta</option>
+    <option>Média</option>
+    <option>Baixa</option>
+  </select>
+
+  <button type="submit">Adicionar</button>
 </form>
 
 <h2>📋 Tarefas</h2>
