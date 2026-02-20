@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planner Diário</title>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0f172a">
+</head>
+<body style="font-family:Arial;background:#0f172a;color:white;padding:15px;">
+<h1>📅 Planner Diário</h1>
+
+<form method="POST" action="/adicionar">
+<input name="titulo" placeholder="Nova tarefa" required>
+<input type="time" name="horario" required>
+<select name="prioridade">
+<option value="alta">🔥 Alta</option>
+<option value="media">⚡ Média</option>
+<option value="baixa">🌱 Baixa</option>
+</select>
+<button type="submit">Adicionar</button>
+</form>
+
+<h2>📋 Tarefas</h2>
+
+{% for t in tarefas %}
+<div>
+<b>{{ t.horario }}</b> — {{ t.titulo }}<br>
+Prioridade: {{ t.prioridade }}
+{% if not t.concluida %}
+<br><a href="/concluir/{{ loop.index0 }}">✔ Concluir</a>
+{% endif %}
+</div>
+{% endfor %}
+
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/static/sw.js");
+}
+</script>
+</body>
+</html>
